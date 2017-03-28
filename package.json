@@ -1,0 +1,30 @@
+{
+  "name": "import-data",
+  "version": "1.0.0",
+  "description": "Nodejs导数据脚本",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js\t",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhoushuren/ImportDataToLocal.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "zhoujun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhoushuren/ImportDataToLocal/issues"
+  },
+  "homepage": "https://github.com/zhoushuren/ImportDataToLocal#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "koa": "^2.2.0",
+    "mysql": "^2.13.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
+  }
+}

@@ -2,16 +2,18 @@
  * Created by zhoujun on 2017/3/24.
  *
  * 从生产环境读数据到本地数据库
+ * 此代码再客户端本地执行
  */
 
 const rp = require('request-promise');
 Promise = require('bluebird');
-
+const EventEmitter = require('events');
 var MongoClient = require('mongodb').MongoClient
 	, assert = require('assert');
-
+// server.js 的服务器url
 var url = 'mongodb://127.0.0.1:27017/record';
 
+//这里的Demo是导数据到本地的Mongodb，实际上用什么数据库自行决定。
 const  db = MongoClient.connect(url);
 
 function req(id){
@@ -22,7 +24,6 @@ function req(id){
 	});
 }
 
-const EventEmitter = require('events');
 class MyEmitter extends EventEmitter {}
 const myEmitter = new MyEmitter();
 
@@ -34,8 +35,8 @@ myEmitter.on('query', (id) => {
 				insertLocal(r);		//异步写本地的数据库
 			},0);
 
-			myEmitter.emit('query',r.last_id);
-			// process.nextTick(forLoops, i+=1);
+			myEmitter.emit('query',r.last_id);	//递归调用
+			// process.nextTick(myEmitter.emit('query',r.last_id));
 		}else{
 			isOk = true;
 			console.log('任务完成!')
